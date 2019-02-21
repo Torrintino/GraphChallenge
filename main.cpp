@@ -1,4 +1,5 @@
 #include <io/SNAPGraphReader.h>
+#include <community/Truss.h>
 
 int main(int argc, const char *argv[]) {
 	// argc is the number of command line arguments.
@@ -13,8 +14,10 @@ int main(int argc, const char *argv[]) {
 	// See the SNAPGraphReader documentation for details.
 	NetworKit::SNAPGraphReader reader{false, false};
 	auto g = reader.read(argv[1]); // Yields NetworKit::Graph object.
-  
-  //CODE HERE
+
+	NetworKit::MaximumKTruss kt(g);
+	kt.run();
+	std::cout << kt.k << std::endl;
 
 	return EXIT_SUCCESS;
 }
